@@ -1,0 +1,18 @@
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+#logo {
+  width: 140px;
+}
+
+[hidden].nav-list {
+  display: none !important;
+}
+
+.content-footer{
+  background-color: lightgrey;
+  height: 23px;
+  text-align: center;
+  padding: 12px;
+}
