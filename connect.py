@@ -27,11 +27,13 @@ def addCatTier():
 
 @app.route('/getCatTier',methods=['GET'])
 def getCatTierData():
-	users = db.catTier.find()
+	client_name = request.args.get('data')
+	print(client_name)
+	users = db.details.find_one({"clientName" : client_name})
+	print(users)
 	data = []
-	for user in users:
-		data.append({'llimit':user['llimit'],'ulimit':user['ulimit'],'sku':user['sku']})
-		
+	# data.append({'llimit':user['llimit'],'ulimit':user['ulimit'],'sku':user['sku']})
+	data.append({'cat_tier_fees':users['cat_tier_fees']})
 	return jsonify(data)
 
 @app.route('/getDetails',methods=['GET'])
@@ -61,20 +63,20 @@ def getDetails():
 
 @app.route('/getTier',methods=['GET'])
 def getTierData():
-	users = db.details.find_one({"clientName" : "Lighthouse"})
+	client_name = request.args.get('data')
+	print(client_name)
+	users = db.details.find_one({"clientName" : client_name})
 	print(users)
 	data = []
 	# data.append({'llimit':user['llimit'],'ulimit':user['ulimit'],'sku':user['sku']})
 	data.append({'tiers':users['tiers']})
-
-		
 	return jsonify(data)
 
 
 @app.route('/addTier', methods=['POST','GET'])
 
 def addTier():
-
+	
     addTier = db.details
 
     values = request.json
