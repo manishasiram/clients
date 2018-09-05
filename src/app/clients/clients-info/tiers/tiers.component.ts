@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormArray, FormBuilder, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { HttpParams } from '@angular/common/http';
   templateUrl: './tiers.component.html',
   styleUrls: ['./tiers.component.css']
 })
-export class TiersComponent implements OnInit {
+export class TiersComponent implements OnInit,OnChanges {
 
   public myForm: FormGroup;
   dataObj : any;
@@ -31,12 +31,16 @@ export class TiersComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.clientName+"in tiers client name");
-    this.getData();
+    // this.getData();
       this.myForm = this._fb.group({
           add: this._fb.array([
               this.initlanguage(),
           ])
       });
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    this.clientName = changes['clientName'].currentValue;
+    console.log(this.clientName + "in tiers")
   }
 
   initlanguage() {
@@ -51,19 +55,19 @@ export class TiersComponent implements OnInit {
   }
   
   
-  getData() {
-    const DATA = {'clientName':this.clientName}
-    console.log(this.clientName+"getDataaaaa")
+  // getData() {
+  //   const DATA = {'clientName':this.clientName}
+  //   console.log(this.clientName+"getDataaaaa")
     
-    // const params = new HttpParams();
-    this.httpClient.get('http://127.0.0.1:5000/getDetails',{params:{data:this.clientName}}).subscribe(data => {
-      console.log(data);
-      this.dataObj = data;
-      console.log(this.dataObj);
+  //   // const params = new HttpParams();
+  //   this.httpClient.get('http://127.0.0.1:5000/getDetails',{params:{data:this.clientName}}).subscribe(data => {
+  //     console.log(data);
+  //     this.dataObj = data;
+  //     console.log(this.dataObj);
       
-    });
+  //   });
     
-  }
+  // }
 
    getCatTierData() {
     this.httpClient.get('http://127.0.0.1:5000/getCatTier').subscribe(data => {

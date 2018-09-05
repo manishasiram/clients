@@ -26,7 +26,8 @@ export class ClientsComponent implements OnInit {
   }
   constructor( private router: Router,private httpClient:HttpClient) { 
     this.dataObj = new AddClient;
-    this.valueChange.emit(this.dataObj[0]);
+    this.valueChange.emit(this.clientName);
+    console.log(this.clientName);
     this.createFormControls();
     this.createForm();
   }

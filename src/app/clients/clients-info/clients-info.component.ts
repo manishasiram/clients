@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,13 +6,17 @@ import { Router } from '@angular/router';
   templateUrl: './clients-info.component.html',
   styleUrls: ['./clients-info.component.css']
 })
-export class ClientsInfoComponent implements OnInit {
+export class ClientsInfoComponent implements OnInit, OnChanges {
   @Input('clientName') clientName: string;
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     
-  console.log(this.clientName+"in clients info comp")
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.clientName = changes['clientName'].currentValue;
+    console.log(this.clientName + "in clients info comp")
   }
 
 }

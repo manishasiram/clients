@@ -6,18 +6,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./clients-new.component.css']
 })
 export class ClientsNewComponent implements OnInit {
-  @Input() 
   clientName: String;
   constructor() { }
 
   ngOnInit() {
-    // this.clientName = 'Lighthouse';
+    this.clientName = 'Lighthouse';
     // console.log(this.clientName+"ngonit");
     }
   onShowComponent(client) {
 
     this.clientName = client;
-    console.log(this.clientName+"clientnameee");
+    console.log(client+"clientnameee");
     
   }
   

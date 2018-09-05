@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Details } from '../details.model';
@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit,OnChanges {
   detailsArr:Details[]=[];
   dataObj:any;
   detailsObj : Details;
@@ -22,28 +22,37 @@ export class DetailsComponent implements OnInit {
 
 
   constructor(private httpClient : HttpClient) {
-    this.getData();
+    
     this.detailsObj = new Details;
     
    }
 
   
   ngOnInit() {
+    
     console.log(this.clientName);
     this.dataObj=[];
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.clientName = changes['clientName'].currentValue;
+    console.log(this.clientName + "in details")
+    this.getData();
+  }
+
   getData() {
-    this.httpClient.get('http://127.0.0.1:5000/getDetails').
+    const DATA = {'clientName':this.clientName}
+    console.log(this.clientName+"getDataaaaa")
     
-    subscribe(data => {
-      console.log(data+"");
+    // const params = new HttpParams();
+    this.httpClient.get('http://127.0.0.1:5000/getDetails',{params:{data:this.clientName}}).subscribe(data => {
+      console.log(data);
       this.dataObj = data;
-      console.log(this.dataObj[0].clientName+"heloopppp");
-      
+      console.log(this.dataObj[0].clientName+"11111111");
       
     });
-  
-  } 
+    
+  }
 
   onUpdate(detailsObj:Details){
     console.log('Form Submitted!', this.updateForm.value);
