@@ -48,17 +48,17 @@ addTier() {
     console.log(this.myForm.value['add'][0]['llimit']);
     console.log(this.catTierObj.llimit+"234");
     
-    for(var i in this.myForm.value['add']){
-      this.catTierObj.llimit= i['llimit'];
-      this.catTierObj.ulimit = i['ulimit'];
-      this.catTierObj.sku = i['sku'];
-      const DATA = {
-        'llimit':this.catTierObj.llimit,
-        'ulimit':this.catTierObj.ulimit,
-        'sku':this.catTierObj.sku
-      }
+    // for(var i in this.myForm.value['add']){
+    //   this.catTierObj.llimit= i['llimit'];
+    //   this.catTierObj.ulimit = i['ulimit'];
+    //   this.catTierObj.sku = i['sku'];
+    //   const DATA = {
+    //     'llimit':this.catTierObj.llimit,
+    //     'ulimit':this.catTierObj.ulimit,
+    //     'sku':this.catTierObj.sku
+    //   }
 
-    }
+    // }
       
     
     this.httpClient.post('http://127.0.0.1:5000/addCatTier',this.myForm.value['add']).subscribe(tierdata => {

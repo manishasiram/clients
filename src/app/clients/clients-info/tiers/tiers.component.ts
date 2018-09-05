@@ -25,8 +25,7 @@ export class TiersComponent implements OnInit,OnChanges {
     this.catTierObj = new AddCatTier;
     this.tierDataObj = new AddCatTier;
     
-    this.getCatTierData();
-    this.getTierData();
+    
   }
 
   ngOnInit() {
@@ -41,6 +40,8 @@ export class TiersComponent implements OnInit,OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.clientName = changes['clientName'].currentValue;
     console.log(this.clientName + "in tiers")
+    this.getCatTierData();
+    this.getTierData();
   }
 
   initlanguage() {
@@ -50,36 +51,21 @@ export class TiersComponent implements OnInit,OnChanges {
           sku: ['']
       });
   }
-  onAddTier(){
-    // this.router.navigate(['tiers/addTier']);
-  }
+ 
   
   
-  // getData() {
-  //   const DATA = {'clientName':this.clientName}
-  //   console.log(this.clientName+"getDataaaaa")
-    
-  //   // const params = new HttpParams();
-  //   this.httpClient.get('http://127.0.0.1:5000/getDetails',{params:{data:this.clientName}}).subscribe(data => {
-  //     console.log(data);
-  //     this.dataObj = data;
-  //     console.log(this.dataObj);
-      
-  //   });
-    
-  // }
 
    getCatTierData() {
-    this.httpClient.get('http://127.0.0.1:5000/getCatTier').subscribe(data => {
+    this.httpClient.get('http://127.0.0.1:5000/getCatTier',{params:{data:this.clientName}}).subscribe(data => {
       console.log(data);
-      this.catTierData = data;
+      this.catTierData = data[0]['cat_tier_fees'];
       console.log(this.catTierData);
       
     });
   }
  
   getTierData() {
-    this.httpClient.get('http://127.0.0.1:5000/getTier').subscribe(data => {
+    this.httpClient.get('http://127.0.0.1:5000/getTier',{params:{data:this.clientName}}).subscribe(data => {
       console.log(data+"tier data");
       this.tierData = data[0]['tiers'];
       console.log(this.tierData+"tier data model");

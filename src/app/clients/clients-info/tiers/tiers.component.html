@@ -55,24 +55,37 @@
     
         <mat-tab label="Cat-Tiers"> 
     
-           <div class="row">
-            <div class="fieldBlock">
-                <div class="title">Lower Limit</div>
-                <input id="llimit" *ngFor="let element of catTierData" value="{{element.llimit}}" />
-            </div>
-                
-            <div class="fieldBlock">
-                <div class="title">Upper Limit</div>
-                <input id="ulimit" *ngFor="let element of catTierData" value="{{element.ulimit}}" />
-    
-            </div>
+            <div class="row">
+                <div   class="fieldBlock">
+                        <div class="title">Lower Limit</div>
+                </div>
+                        
+                <div   class="fieldBlock">
+                        <div class="title">Upper Limit</div>
             
-            <div class="fieldBlock">
-                <div class="title">SKU</div>
-                <input id="sku" *ngFor="let element of catTierData" value="{{element.sku}}" />
-                
+                </div>
+                    
+                <div   class="fieldBlock">
+                        <div class="title">SKU</div>
+                        
+                </div>
             </div>
-        </div>
+            <div  *ngFor="let element of catTierData;" class="row">
+                <div   class="fieldBlock">
+                        <input  id="llimit" value="{{element.llimit}}" />
+                </div>
+                        
+                <div   class="fieldBlock">
+                        <input id="ulimit"   value="{{element.ulimit}}" />
+            
+                </div>
+                    
+                <div   class="fieldBlock">
+
+                        <input  id="sku"   value="{{element.sku}}" />
+                        
+                </div>
+            </div>
           
             <div class="row">
                 <!-- <button mat-icon-button color="primary" (click)="onCat()" type="button" style="font-size:25px"> <i class="fa fa-plus"></i> 
