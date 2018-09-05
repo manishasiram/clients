@@ -1,0 +1,59 @@
+<div class="container">
+  
+    <form   #updateForm="ngForm" (ngSubmit)="onUpdate()">
+      <div class= "row">
+          <div class="col-xs-4">
+              <label for="ex2">Client Name</label>
+              <input class="form-control" id="name" name = "name"  [value]="element.clientName"  *ngFor="let element of dataObj" [(ngModel)]="element.clientName"  type="text">
+            </div>
+            <div class="col-xs-4">
+              <label for="ex2"> ClientFees Owner</label>
+              <input class="form-control" id="feesowner" name="feesowner" *ngFor="let element of dataObj" [(ngModel)]="element.clientFeesOwner"  type="text">
+            </div>
+
+      </div>
+      <div class = "row">
+          <div class="col-xs-4">
+              <label for="ex2">Email</label>
+              <input class="form-control" id="email" name="email" *ngFor="let element of dataObj" [(ngModel)]="element.email"  type="text">
+          </div>
+          <div class="col-xs-4">
+              <label for="ex2">Secondary Email</label>
+              <input class="form-control" id="semail" name="semail" *ngFor="let element of dataObj" [(ngModel)]="element.secondayEmail"type="text">
+            </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-4">
+              <label for="ex2">Created By</label>
+              <input class="form-control" id="created" name="created" *ngFor="let element of dataObj" [(ngModel)]="element.createdBy"type="text">
+          </div>
+          <div class="col-xs-4">
+              <label for="ex2">Modified By</label>
+              <input class="form-control" id="modified" name="modified" *ngFor="let element of dataObj" [(ngModel)]="element.modifiedBy" type="text">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-4">
+              <label for="ex2">Currency</label>
+              <input class="form-control" id="currency" name="currency" *ngFor="let element of dataObj" [(ngModel)]="element.currency"  type="text">
+          </div>
+          <div class="col-xs-4">
+              <label for="ex2">Email Opt Out</label>
+              <input class="form-control" id="emailOpt" name="emailOpt" *ngFor="let element of dataObj" [(ngModel)]="element.emailOptOut"  type="text">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-4">
+              <label for="ex2">Carrier ID</label>
+              <input class="form-control" id="carrier" name="carrier" *ngFor="let element of dataObj" [(ngModel)]="element.carrierID"   type="text">
+          </div>
+          <div class="col-xs-4">
+              <label for="ex2">Exchange Rate</label>
+              <input class="form-control" id="exchange" name="exchange" *ngFor="let element of dataObj" [(ngModel)]="element.exchangeRate" type="text">
+          </div>
+      </div> 
+      <br>
+      <button mat-raised-button color="primary"  type="submit">Save</button>
+         
+    </form>
+  </div>

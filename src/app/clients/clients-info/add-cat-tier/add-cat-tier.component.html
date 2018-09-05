@@ -1,0 +1,35 @@
+<form [formGroup]="myForm"  (ngSubmit)="onSave()">
+    <div formArrayName="add">
+        <div *ngFor="let language of myForm.controls.add.controls; let i=index">
+          <div class="row" [formGroupName]="i">
+  
+              <div class="fieldBlock" >
+                  <div class="title">Lower Limit</div>
+                  
+                  <input  type="number" class="form-control" formControlName="llimit" id="llimit"  />
+              </div>
+                  
+              <div class="fieldBlock">
+                  <div class="title">Upper Limit</div>
+                  <!-- <input id="ulimit" *ngFor="let element of dataObj" value="{{element.ulimit}}" /> -->
+                  <input  type="number" class="form-control" formControlName="ulimit" id="ulimit" />
+      
+              </div>
+              
+              <div class="fieldBlock">
+                  <div class="title">SKU</div>
+                  <!-- <input id="sku" *ngFor="let element of dataObj" value="{{element.sku}}" /> -->
+                  <input  type="number" class="form-control" formControlName="sku" id="sku" />
+                  
+              </div>
+          </div> 
+        </div>
+        <div>
+            <button mat-icon-button color="primary"  (click)="addTier()" style="cursor: default" type="button" style="font-size:25px"> <i class="fa fa-plus"> </i> </button>
+            <button mat-raised-button color="primary"  type="submit">Save</button>
+          </div> 
+  
+  
+      </div>
+  </form>
+  

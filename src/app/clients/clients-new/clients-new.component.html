@@ -1,19 +1,11 @@
-
-<div class="container">
-  <div class="row">
-    <!-- <div class="column">
-      <app-clients></app-clients>
-    </div> -->
-    <app-clients></app-clients>
-      <app-clients-info></app-clients-info>
-     
-  </div>
-</div>
-
-
- 
-
-
-
-  
+<mat-sidenav-container class="client-fees-container">
+  <mat-sidenav mode="side" opened>
+    <!-- <app-client-fee-list (valueChange)='displayClientFee($event)'></app-client-fee-list> -->
+    <app-clients (valueChange)='onShowComponent($event)'></app-clients>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <!-- <app-client-fee-details [clientFeeId]="clientFeeId"></app-client-fee-details> -->
+      <app-clients-info [clientName]="clientName" ></app-clients-info>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 

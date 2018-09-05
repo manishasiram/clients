@@ -1,0 +1,21 @@
+.fieldBlock
+{
+display: block;
+/* background-color: rgb(200, 200, 200); */
+width: 200px;
+margin: auto;
+float: left;
+padding: 15px;
+
+}
+
+.title
+{
+font-weight: bold;
+}
+
+.input
+{
+border: 1px solid gray;
+font-size: 1.1em;
+}
