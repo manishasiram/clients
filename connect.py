@@ -16,14 +16,7 @@ cors = CORS(app)
 def redirect_url():
 	return "Hello"
 
-@app.route('/addCatTier', methods=['POST','GET'])
-def addCatTier():
-	addCat = db.catTier
-	values = request.json
-	print(values)
-	for i in values:
-		addCat.insert({ "llimit":i['llimit'], "ulimit":i['ulimit'], "sku":i['sku']})	
-	return "Success"
+
 
 @app.route('/getCatTier',methods=['GET'])
 def getCatTierData():
@@ -32,22 +25,15 @@ def getCatTierData():
 	users = db.details.find_one({"clientName" : client_name})
 	print(users)
 	data = []
-	# data.append({'llimit':user['llimit'],'ulimit':user['ulimit'],'sku':user['sku']})
 	data.append({'cat_tier_fees':users['cat_tier_fees']})
 	return jsonify(data)
 
 @app.route('/getDetails',methods=['GET'])
 def getDetails():
-	# values = request.args.getlist('clientName')
-	# values=request.args
-	# print(values)
 	client_name = request.args.get('data')
 	print(client_name)
-	
-	# client_name = request.args.get('clientName')
-	# print(client_name)
-	if (client_name==None):
-		users = db.details.find_one({})
+	if (client_name == None):
+		users = db.details.find_one({"clientName":None})
 		print("in if")
 	else:
 		users = db.details.find_one({"clientName" : client_name})
@@ -58,7 +44,6 @@ def getDetails():
 		'modifiedBy':users['modifiedBy'],'currency':users['currency'],'emailOptOut':users['emailOptOut'],\
 		'carrierID':users['carrierID'],'exchangeRate':users['exchangeRate']})
 	print(data)	
-	print("jhfgdjfgdjgg")
 	return jsonify(data)
 
 @app.route('/getTier',methods=['GET'])
@@ -68,50 +53,54 @@ def getTierData():
 	users = db.details.find_one({"clientName" : client_name})
 	print(users)
 	data = []
-	# data.append({'llimit':user['llimit'],'ulimit':user['ulimit'],'sku':user['sku']})
 	data.append({'tiers':users['tiers']})
 	return jsonify(data)
 
 
-@app.route('/addTier', methods=['POST','GET'])
+@app.route('/addTier', methods=['POST'])
 
 def addTier():
-	
-    addTier = db.details
+	addTier = db.details
+	values = request.json
+	client_name = request.args.get('data')
+	print(client_name)
+	print(values)
+	itm = db.details.find_one({"clientName" : client_name})
+	for i in values:
+		addTier.update({"_id":itm.get('_id')},
+			{'$push' : {
+					"tiers" : {
+						"min": i['min'],
+						"max": i['max'],
+						"sku" : i['sku']
+					}
+				}
+			}
+		)
 
-    values = request.json
+	return "Success"
 
-    print(values[0])
+@app.route('/addCatTier', methods=['POST','GET'])
 
-    itm = db.details.find_one({"clientName" : "Lighthouse"})
-
-    for i in values:
-
-        addTier.update({"_id":itm.get('_id')},
-
-            {   '$push' : {
-
-                    "tiers" : {
-
-                        "llimit": i['llimit'],
-
-                        "ulimit": i['ulimit'],
-
-                        "sku" : i['sku']
-
-                    }
-
-                }
-
-         
-
-            }
-
-       )
-
-        # addTier.insert({ "llimit":i['llimit'], "ulimit":i['ulimit'], "sku":i['sku']})
-
-    return "Success"
+def addCatTier():
+	addTier = db.details
+	values = request.json
+	client_name = request.args.get('data')
+	print(client_name)
+	print(values[0])
+	itm = db.details.find_one({"clientName" : client_name})
+	for i in values:
+		addTier.update({"_id":itm.get('_id')},
+			{   '$push' : {
+					"cat_tier_fees" : {
+						"min": i['min'],
+						"max": i['max'],
+						"sku" : i['sku']
+					}
+				}
+			}
+		)
+	return "Success"
 
 
 
@@ -120,9 +109,7 @@ def updateDetails ():
 	users = db.details
 	values = request.json
 	print(values)
-	
-
-	itm = db.details.find_one({})
+	itm = db.details.find_one({'clientName': values['name']})
 	print (itm.get('_id'))
 
 	users.update({"_id":itm.get('_id')},
@@ -161,8 +148,54 @@ def addclient():
 	addCat = db.details
 	values = request.json
 	print(values)
-	addCat.insert({ "clientName":values['name']})
+	addCat.insert({ "clientName":values['name'],"clientFeesOwner":None,"email":"","secondaryEmail":"","createdBy":"",\
+		"modifiedBy":"","currency":"","emailOptOut":"",\
+		"carrierID":"","exchangeRate":"","tiers":[],"cat_tier_fees":[],"static_fees":{'admin':"",
+				'itv':"",
+				'photos':"",
+				'state_ny':"",
+				'reviewer':"",
+				'erroneous':"",
+				'erroneous_admin':""}})
 	return jsonify(values)
+
+@app.route('/getStaticFee',methods=['GET'])
+def getStaticFee():
+	client_name = request.args.get('data')
+	print(client_name)
+	users = db.details.find_one({"clientName" : client_name})
+	print(users)
+	data = []
+	data.append({'static_fees':users['static_fees']})
+	return jsonify(data)
+
+@app.route("/updateStaticFee", methods=['POST','GET'])
+def updateStaticFee ():
+	users = db.details
+	client_name = request.args.get('data')
+	print(client_name)
+	values = request.json
+	print(values)
+	itm = db.details.find_one({'clientName': client_name})
+	print (itm.get('_id'))
+	users.update({"_id":itm.get('_id')},
+	 	{
+		 '$set':{
+			'static_fees':{
+				'admin':values['admin'],
+				'itv':values['itv'],
+				'photos':values['photos'],
+				'state_ny':values['state'],
+				'reviewer':values['reviewer'],
+				'erroneous':values['erroneous'],
+				'erroneous_admin':values['erroneousAdmin'],
+				}
+		 	}
+		}
+	)
+	return "Updated"
+
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
