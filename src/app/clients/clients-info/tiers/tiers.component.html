@@ -27,11 +27,11 @@
                 </div>
                 <div  *ngFor="let element of tierData;" class="row">
                     <div   class="fieldBlock">
-                            <input  id="llimit" value="{{element.llimit}}" />
+                            <input  id="min" value="{{element.min}}" />
                     </div>
                             
                     <div   class="fieldBlock">
-                            <input id="ulimit"   value="{{element.ulimit}}" />
+                            <input id="max"   value="{{element.max}}" />
                 
                     </div>
                         
@@ -47,7 +47,7 @@
                             
                             </button> -->
                 
-                            <app-add-tier></app-add-tier>
+                            <app-add-tier [clientName]="clientName" ></app-add-tier>
                 
                 </div>
         </mat-tab> 
@@ -72,11 +72,11 @@
             </div>
             <div  *ngFor="let element of catTierData;" class="row">
                 <div   class="fieldBlock">
-                        <input  id="llimit" value="{{element.llimit}}" />
+                        <input  id="min" value="{{element.min}}" />
                 </div>
                         
                 <div   class="fieldBlock">
-                        <input id="ulimit"   value="{{element.ulimit}}" />
+                        <input id="max"   value="{{element.max}}" />
             
                 </div>
                     
@@ -92,11 +92,15 @@
                 
                 </button> -->
     
-                <app-add-cat-tier> </app-add-cat-tier>
+                <app-add-cat-tier [clientName]="clientName"> </app-add-cat-tier>
     
             </div>
     
             
+        </mat-tab >
+
+        <mat-tab label="Static-Fees">
+                <app-status-fee [clientName]="clientName"> </app-status-fee>
         </mat-tab>
     
     </mat-tab-group>

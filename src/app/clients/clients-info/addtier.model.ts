@@ -1,5 +1,5 @@
 export class AddTier{
-    llimit : number;
-    ulimit : number;
+    min : number;
+    max : number;
     sku : number;
 }

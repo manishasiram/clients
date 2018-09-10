@@ -1,0 +1,55 @@
+<div class="container">
+  
+  <form   #updateForm="ngForm" (ngSubmit)="onUpdate()">
+    <div class= "row">
+        <div class="col-xs-4">
+            <label for="ex2">Admin</label>
+            <input class="form-control" id="admin" name = "admin"  [value]="dataObj.static_fees.admin"   [(ngModel)]="dataObj.static_fees.admin"  type="text">
+          </div>
+          
+
+    </div>
+    <div class = "row">
+        <div class="col-xs-4">
+            <label for="ex2">ITV</label>
+            <input class="form-control" id="itv" name="itv"  [(ngModel)]="dataObj.static_fees.itv"  type="text">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="ex2">Photos</label>
+            <input class="form-control" id="photos" name="photos"  [(ngModel)]="dataObj.static_fees.photos"type="text">
+        </div>
+      
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="ex2">State NY</label>
+            <input class="form-control" id="state" name="state"  [(ngModel)]="dataObj.static_fees.state_ny"  type="text">
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="ex2">Reviewer</label>
+            <input class="form-control" id="reviewer" name="reviewer"  [(ngModel)]="dataObj.static_fees.reviewer" type="text">
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="ex2">Erroneous</label>
+            <input class="form-control" id="erroneous" name="erroneous"  [(ngModel)]="dataObj.static_fees.erroneous" type="text">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="ex2">Erroneous Admin</label>
+            <input class="form-control" id="erroneousAdmin" name="erroneousAdmin" [(ngModel)]="dataObj.static_fees.erroneous_admin" type="text">
+        </div>
+    </div> 
+    <br>
+    <button mat-raised-button color="primary"  type="submit">Save</button>
+       
+  </form>
+</div>

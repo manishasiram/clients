@@ -4,7 +4,7 @@
       <div class= "row">
           <div class="col-xs-4">
               <label for="ex2">Client Name</label>
-              <input class="form-control" id="name" name = "name"  [value]="element.clientName"  *ngFor="let element of dataObj" [(ngModel)]="element.clientName"  type="text">
+              <input class="form-control" id="name" name = "name"    *ngFor="let element of dataObj" [(ngModel)]="element.clientName"  type="text">
             </div>
             <div class="col-xs-4">
               <label for="ex2"> ClientFees Owner</label>
@@ -19,7 +19,7 @@
           </div>
           <div class="col-xs-4">
               <label for="ex2">Secondary Email</label>
-              <input class="form-control" id="semail" name="semail" *ngFor="let element of dataObj" [(ngModel)]="element.secondayEmail"type="text">
+              <input class="form-control" id="semail" name="semail" *ngFor="let element of dataObj" [(ngModel)]="element.secondaryEmail"type="text">
             </div>
       </div>
       <div class="row">

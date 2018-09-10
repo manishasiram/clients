@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from '../../core/angular-material.module';
 import { DetailsComponent } from './details/details.component';
+import { StatusFeeComponent } from './status-fee/status-fee.component';
 
 
 @NgModule({
@@ -19,6 +20,6 @@ import { DetailsComponent } from './details/details.component';
     HttpClientModule
 
   ],
-  declarations: [DetailsComponent]
+  declarations: [DetailsComponent, StatusFeeComponent]
 })
 export class ClientsInfoModule { }

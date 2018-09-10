@@ -23,7 +23,7 @@ export class TiersComponent implements OnInit,OnChanges {
   @Input('clientName') clientName: string;
   constructor(private _fb: FormBuilder,private httpClient : HttpClient, private router: Router) { 
     this.catTierObj = new AddCatTier;
-    this.tierDataObj = new AddCatTier;
+    // this.tierDataObj = new AddCatTier;
     
     
   }
@@ -46,8 +46,8 @@ export class TiersComponent implements OnInit,OnChanges {
 
   initlanguage() {
       return this._fb.group({
-          llimit: [''],
-          ulimit: [''],
+          min: [''],
+          max: [''],
           sku: ['']
       });
   }

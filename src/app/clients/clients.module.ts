@@ -12,6 +12,7 @@ import { TiersComponent } from './clients-info/tiers/tiers.component';
 import { AddCatTierComponent } from './clients-info/add-cat-tier/add-cat-tier.component';
 import { AddTierComponent } from './clients-info/add-tier/add-tier.component';
 import { DetailsComponent } from './clients-info/details/details.component';
+import { StatusFeeComponent } from './clients-info/status-fee/status-fee.component';
 
 
 
@@ -26,6 +27,6 @@ import { DetailsComponent } from './clients-info/details/details.component';
     ReactiveFormsModule
   ],
   declarations: [ClientsComponent, ClientsNewComponent, ClientsInfoComponent,TiersComponent,
-    AddCatTierComponent,AddTierComponent,DetailsComponent]
+    AddCatTierComponent,AddTierComponent,DetailsComponent, StatusFeeComponent]
 })
 export class ClientsModule { }

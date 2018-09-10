@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AddTier } from '../addtier.model';
@@ -9,14 +9,16 @@ import { AddTier } from '../addtier.model';
   templateUrl: './add-tier.component.html',
   styleUrls: ['./add-tier.component.css']
 })
-export class AddTierComponent implements OnInit {
+export class AddTierComponent implements OnInit,OnChanges {
   
   catTierObj : AddTier;
   tierData : any;
   myForm:FormGroup;
-  llimit: FormControl;
-  ulimit: FormControl;
+  min: FormControl;
+  max: FormControl;
   sku: FormControl;
+  flag=true;
+  @Input('clientName') clientName: string;
   constructor(private httpClient : HttpClient, private _fb: FormBuilder) { 
     this.catTierObj = new AddTier();
     
@@ -29,12 +31,16 @@ export class AddTierComponent implements OnInit {
         ])
     });
   }  
-
+  ngOnChanges(changes: SimpleChanges) {
+    this.clientName = changes['clientName'].currentValue;
+    console.log(this.clientName + "in add tier")
+    
+  }
   
 initlanguage() {
     return this._fb.group({
-        llimit: [''],
-        ulimit: [''],
+        min: [''],
+        max: [''],
         sku: ['']
     });
 }
@@ -44,30 +50,35 @@ addTier() {
   control.push(this.initlanguage());
 }
   onSave(){
-    console.log('Form Submitted!', this.myForm.value);
-    console.log(this.myForm.value['add'][0]['llimit']);
-    console.log(this.catTierObj.llimit+"234");
-    
-    for(var i in this.myForm.value['add']){
-      this.catTierObj.llimit= i['llimit'];
-      this.catTierObj.ulimit = i['ulimit'];
-      this.catTierObj.sku = i['sku'];
-      const DATA = {
-        'llimit':this.catTierObj.llimit,
-        'ulimit':this.catTierObj.ulimit,
-        'sku':this.catTierObj.sku
+    for(var i=0; i< this.myForm.value['add'].length; i++){
+    if(this.myForm.value['add'][i].min == ""||this.myForm.value['add'][i].max == ""||this.myForm.value['add'][i].sku == ""){
+      var r=confirm("Please enter tiers values");
+      if (r==true)
+      {
+        this.flag = true;
+        alert("You pressed OK!");
+        this.myForm.reset();
       }
-
-    }
-      
+      else
+      {
+        this.flag = false;
+        alert("You pressed Cancel!");
+      }
     
-    this.httpClient.post('http://127.0.0.1:5000/addTier',this.myForm.value['add']).subscribe(tierdata => {
+    }
+    if(this.flag==true){
+      console.log('Form Submitted!', this.myForm.value);
+      console.log(this.myForm.value['add'][0].min+"min value");
+      console.log(this.clientName+"at add tier on save click");
+      this.httpClient.post('http://127.0.0.1:5000/addTier',this.myForm.value['add'],{params:{data:this.clientName}}).subscribe(tierdata => {
           console.log(tierdata + "4444");
           
           console.log("hello");
         })
+
+    }
     
    }
 
-
+  }
 }

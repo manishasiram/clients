@@ -10,7 +10,7 @@ export class ClientsNewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.clientName = 'Lighthouse';
+    this.clientName = 'None';
     // console.log(this.clientName+"ngonit");
     }
   onShowComponent(client) {
