@@ -1,0 +1,27 @@
+.mat-elevation-z8 {
+  margin: 15px
+}
+
+table {
+  width: 100%;
+  margin: auto;
+  align-content: center;
+  margin-top: 15px;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  background-color: #f1f1f1;
+  font-size: 18px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 99%;
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.mat-form-field-label{
+  left: 10px !important;
+}

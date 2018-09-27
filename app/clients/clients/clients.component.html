@@ -1,0 +1,33 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<form class="add-form"  [formGroup]="addclientForm" (ngSubmit)="onSubmit()">    
+  <div>
+    <div class="row">
+        <input  class="sample" matInput placeholder="New Client Name" formControlName="name">
+        <button mat-icon-button color="primary" style="cursor: default" type="submit" style="font-size:25px"><i class="fa fa-plus"> </i></button> 
+    </div>
+    
+    
+  </div>
+
+  
+
+</form> 
+<mat-selection-list #clientName>
+<mat-list-option *ngFor="let element of dataObj" [value]="element.name">
+  {{element.name}}<mat-icon matSuffix>arrow_right</mat-icon>
+</mat-list-option>
+</mat-selection-list>
+<!-- <div><mat-nav-list class="max-width">
+  <a mat-list-item  *ngFor="let element of dataObj"  [value]="element.name" > {{element.name}} </a>
+  
+</mat-nav-list>
+</div>
+   -->
+  
+  
+
+  
+

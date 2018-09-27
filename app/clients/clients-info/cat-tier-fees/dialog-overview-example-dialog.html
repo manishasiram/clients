@@ -1,0 +1,10 @@
+<div mat-dialog-content>
+        <p>Enter the Cat Tier</p>
+        <mat-form-field>
+          <input matInput [(ngModel)]="data.tierName">
+        </mat-form-field>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">No Thanks</button>
+        <button mat-button [mat-dialog-close]="data.tierName" cdkFocusInitial>Ok</button>
+</div>

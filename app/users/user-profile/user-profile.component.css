@@ -1,0 +1,12 @@
+table {
+  width: 50%;
+  margin: auto;
+  align-content: center;
+  margin-top: 15px;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  background-color: #e8e8e8;
+  font-size: 24px;
+}

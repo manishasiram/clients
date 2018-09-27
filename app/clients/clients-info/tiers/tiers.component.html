@@ -1,0 +1,160 @@
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
+        
+    <mat-tab-group>
+        <mat-tab label="Details"> 
+            <app-details [clientName]="clientName"></app-details>
+          
+        </mat-tab> 
+    
+        <mat-tab label="Tiers">
+                <!-- <form  [formGroup]="myForm" (ngSubmit)="onUpdate()"> 
+                        <div formArrayName="tiers">
+                        <div  *ngFor="let language of myForm.controls.tiers.controls; let i=index">
+                        <div [formGroupName]="i" class="row"> -->
+                        <!-- <div  class="row">
+                                <div   class="fieldBlock">
+                                        <div class="title">Lower Limit</div>
+                                </div>
+                                        
+                                <div   class="fieldBlock">
+                                        <div class="title">Upper Limit</div>
+                                
+                                </div>
+                                        
+                                <div   class="fieldBlock">
+                                        <div class="title">SKU</div>
+                                        
+                                </div>
+                                <div>
+                                        <button classs="button" mat-raised-button color="primary"  type="submit">Save</button>   
+                                </div>
+                        </div>
+                        <div  *ngFor="let element of tierData;" class="row">
+                                <div   class="fieldBlock">
+                                        <input  id="min" name="min" class="form-control" formControlName="min" value="{{element.min}}" />
+                                </div>
+                                        
+                                <div   class="fieldBlock">
+                                        <input id="max"  class="form-control" formControlName="max" value="{{element.max}}" />
+                                
+                                </div>
+                                        
+                                <div   class="fieldBlock">
+
+                                        <input  id="sku" class="form-control" formControlName="sku"  value="{{element.sku}}" />
+                                        
+                                </div>
+                                <div  class="fieldBlock">
+                                
+                                </div>
+                        </div> -->
+                        <div class="container">
+  
+                                <form   #updateForm="ngForm" (ngSubmit)="onUpdate()">
+                                  <div *ngFor="let element of tierData;let i=index" class= "row">
+                                      <div class="fieldBlock">
+                                          <label for="ex2">Lower Limit</label>
+                                          <input class="form-control" id="min" name = "{{i}}min"  [(ngModel)]="tierData[i].min" type="text">
+                                        </div>
+                                        <div class="fieldBlock">
+                                          <label for="ex2"> Upper Limit</label>
+                                          <input class="form-control" id="max" name="{{i}}max" [(ngModel)]="tierData[i].max"  type="text">
+                                        </div>
+                                        <div class="fieldBlock">
+                                            <label for="ex2"> SKU</label>
+                                            <input class="form-control" id="sku" name="{{i}}sku" [(ngModel)]="tierData[i].sku"  type="text">
+                                        </div>
+                                  </div>
+                                  
+                                  
+                                  
+                                  
+                                  <br>
+                                  <button mat-raised-button color="primary"  type="submit">Save</button>
+                                     
+                                </form>
+                        </div>
+                            
+                        <!-- </div> -->
+                         <div class="row">
+                                <app-add-tier [clientName]="clientName" ></app-add-tier>
+                        </div>
+                        <!-- </div> -->
+                <!-- </div>
+                </form> -->
+        </mat-tab> 
+    
+    
+        <mat-tab label="Catastrophic-Tiers"> 
+                <form #catTierForm="ngForm" (ngSubmit)="getCatTier()">
+                <div class="row">
+                
+                        <div class="fieldBlock">
+                        <mat-form-field>
+                                <mat-select placeholder="Select a CatTier" (valueChange)="selectCatTier($event)" name="catTier" [(ngModel)]="catTier" [formControl]="catTierControl"required>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let catTier of catTierFeesNames" [value]="catTier">{{catTier}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="catTierControl.hasError('required')">Please choose a catTier</mat-error>
+                        </mat-form-field>
+                        </div>
+                        <div class="fieldBlock">
+                                <button mat-raised-button color="primary" type="submit">Go</button>
+                        </div>
+                </div>
+                <div class="row">
+                        <app-cat-tier-fees [clientName]="clientName"></app-cat-tier-fees>
+                </div>
+                
+                
+                </form>
+                <div class="container">
+  
+                        <form   #updateCatForm="ngForm" (ngSubmit)="onUpdatecatTier()">
+                          <div *ngFor="let element of catTierFees;let i=index" class= "row">
+                              <div class="fieldBlock">
+                                  <label for="ex2">Lower Limit</label>
+                                  <input class="form-control" id="min" name = "{{i}}min"  [(ngModel)]="catTierFees[i].min" type="text">
+                                </div>
+                                <div class="fieldBlock">
+                                  <label for="ex2"> Upper Limit</label>
+                                  <input class="form-control" id="max" name="{{i}}max" [(ngModel)]="catTierFees[i].max"  type="text">
+                                </div>
+                                <div class="fieldBlock">
+                                    <label for="ex2"> SKU</label>
+                                    <input class="form-control" id="sku" name="{{i}}sku" [(ngModel)]="catTierFees[i].sku"  type="text">
+                                </div>
+                          </div>
+                          
+                          
+                          
+                          
+                          <br>
+                          <button mat-raised-button color="primary"  type="submit">Save</button>
+                             
+                        </form>
+                </div>
+          
+            <div class="row">
+                <!-- <button mat-icon-button color="primary" (click)="onCat()" type="button" style="font-size:25px"> <i class="fa fa-plus"></i> 
+                
+                </button> -->
+    
+                <app-add-cat-tier [clientName]="clientName" [catTierName]="selectedCatTier"> </app-add-cat-tier>
+    
+            </div>
+    
+            
+        </mat-tab >
+
+
+
+
+        <mat-tab label="Static-Fees-Sku-Mapping">
+                <app-status-fee [clientName]="clientName"> </app-status-fee>
+        </mat-tab>
+    
+    </mat-tab-group>

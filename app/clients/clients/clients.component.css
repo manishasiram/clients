@@ -1,0 +1,42 @@
+.sample{
+    margin-left:20px;
+}
+.max-width{
+    width:300px;
+    align:left;
+}
+::ng-deep .mat-list-option .mat-pseudo-checkbox {
+    display: none;
+  }
+  
+  ::ng-deep .mat-list-option {
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  .mat-list-item[aria-selected="true"] {
+    background-color: #009eb9;
+  }
+  
+  .mat-list-item[aria-selected="false"] {
+    background-color: #fafafa;
+  }
+  
+  ::ng-deep .mat-list-option mat-icon {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    font-size: 25px !important;
+  }
+  
+  .client-fee-input {
+    margin-left: 15px;
+  }
+  
+  .add-icon {
+    padding-bottom: 10px;
+    margin-left: 10px;
+    font-size: 32px;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+  

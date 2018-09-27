@@ -1,0 +1,33 @@
+.login-card {
+  max-width: 400px;
+  margin: auto;
+  top: 15px
+}
+
+.login-header-image {
+  background-size: cover;
+}
+
+.mat-card-header {
+  background-color: #027789;
+  padding-top: 15px;
+  color: #fff;
+}
+.mat-card-title {
+  font-size: 18px;
+}
+
+.mat-card-actions {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-top: 10px !important;
+}
+
+.invalid-error {
+  display: inline;
+}
